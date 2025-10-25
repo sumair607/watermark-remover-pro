@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional Watermark Removal Service - Remove watermarks from videos and images instantly. Fast, secure, and easy to use.">
+    <meta name="keywords" content="watermark removal, remove watermark, video watermark, image watermark, watermark remover online">
+    <meta name="author" content="Watermark Remover Pro">
+    <title>Watermark Remover Pro - Remove Watermarks from Videos & Images</title>
+    
+    <!-- Google Adsense (you'll add your own code later) -->
+    <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+    
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6; 
+            color: #333; 
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 20px; 
+        }
+        
+        .header {
+            background: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .logo { 
+            font-size: 1.8rem; 
+            font-weight: bold; 
+            color: #667eea; 
+            text-decoration: none;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #667eea;
+        }
+        
+        .main-content {
+            background: white;
+            margin: 2rem auto;
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Ad Space - Currently Blank for Future Ads */
+        .ad-space {
+            height: 100px;
+            background: #f8f9fa;
+            border: 2px dashed #dee2e6;
+            border-radius: 10px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-style: italic;
+        }
+        
+        .upload-area {
+            border: 3px dashed #667eea;
+            padding: 3rem;
+            text-align: center;
+            margin: 2rem 0;
+            border-radius: 10px;
+            background: #f8f9ff;
+            transition: all 0.3s;
+        }
+        
+        .upload-area.dragover {
+            border-color: #764ba2;
+            background: #f0f2ff;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn:disabled {
+            background: #ccc;
+            transform: none;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+        
+        .progress {
+            width: 100%;
+            height: 20px;
+            background: #f0f0f0;
+            border-radius: 10px;
+            margin: 2rem 0;
+            display: none;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            width: 0%;
+            transition: width 0.3s;
+        }
+        
+        .status {
+            margin: 1rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+            text-align: center;
+        }
+        
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        
+        .download-link {
+            display: inline-block;
+            margin: 1rem 0;
+            padding: 15px 30px;
+            background: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+        
+        .download-link:hover {
+            transform: translateY(-2px);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature {
+            text-align: center;
+            padding: 2rem;
+            background: #f8f9ff;
+            border-radius: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .feature:hover {
+            transform: translateY(-5px);
+        }
+        
+        .feature i {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 1rem;
+        }
+        
+        .disclaimer {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .disclaimer h3 {
+            color: #856404;
+            margin-bottom: 1rem;
+        }
+        
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+        }
+        
+        .ad-container {
+            margin: 2rem 0;
+            text-align: center;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .nav { flex-direction: column; gap: 1rem; }
+            .main-content { padding: 1.5rem; }
+            .hero h1 { font-size: 2rem; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <nav class="nav">
+            <a href="/" class="logo">🌊 Watermark Remover Pro</a>
+            <div class="nav-links">
+                <a href="/">Home</a>
+                <a href="/faq">FAQ</a>
+                <a href="/contact">Contact</a>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="hero">
+                <h1>Remove Watermarks Instantly</h1>
+                <p>Professional watermark removal from videos and images. Fast, secure, and easy to use.</p>
+            </div>
+
+            <!-- Ad Space - Blank for Future Ads -->
+            <div class="ad-space">
+                Ad Space - Perfect for Future Google AdSense Banners
+            </div>
+
+            <div class="disclaimer">
+                <h3>⚠️ Important Legal Disclaimer</h3>
+                <p>This tool is intended for legitimate use only. Users are solely responsible for ensuring they have proper rights to modify content. Never remove watermarks from copyrighted content without permission.</p>
+                <a href="/disclaimer" style="color: #856404; text-decoration: underline;">Read Full Disclaimer</a>
+            </div>
+
+            <form id="uploadForm" enctype="multipart/form-data">
+                <div class="upload-area" id="dropArea">
+                    <input type="file" id="fileInput" name="file" accept=".mp4,.avi,.mov,.mkv,.jpg,.jpeg,.png,.bmp" style="display: none;">
+                    <p style="font-size: 1.2rem; margin-bottom: 1rem;">Drag & drop your file here or</p>
+                    <button type="button" class="btn" onclick="document.getElementById('fileInput').click()">Choose File</button>
+                    <p style="margin-top: 1rem; color: #666;">Supported formats: MP4, AVI, MOV, MKV, JPG, PNG, BMP</p>
+                    <p style="margin-top: 0.5rem; color: #666;">Max file size: 100MB</p>
+                    <p id="fileName" style="margin-top: 1rem; font-weight: bold; color: #667eea;"></p>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button type="submit" class="btn" id="processBtn" disabled>Remove Watermark</button>
+                </div>
+            </form>
+            
+            <div class="progress" id="progressContainer">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            
+            <div id="status"></div>
+            <div id="result" style="text-align: center;"></div>
+
+            <!-- Ad Space -->
+            <div class="ad-container">
+                <!-- Future Google AdSense Rectangle -->
+                <div class="ad-space" style="height: 250px;">
+                    Ad Space - Perfect for Future Google AdSense Rectangles
+                </div>
+            </div>
+
+            <div class="features">
+                <div class="feature">
+                    <div style="font-size: 3rem;">⚡</div>
+                    <h3>Fast Processing</h3>
+                    <p>Quick watermark removal using advanced algorithms</p>
+                </div>
+                <div class="feature">
+                    <div style="font-size: 3rem;">🛡️</div>
+                    <h3>Secure & Private</h3>
+                    <p>Your files are processed securely and deleted automatically</p>
+                </div>
+                <div class="feature">
+                    <div style="font-size: 3rem;">🎯</div>
+                    <h3>High Quality</h3>
+                    <p>Maintain original quality while removing watermarks</p>
+                </div>
+                <div class="feature">
+                    <div style="font-size: 3rem;">💯</div>
+                    <h3>Free to Use</h3>
+                    <p>Completely free watermark removal service</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Watermark Remover Pro. All rights reserved.</p>
+            <p style="margin-top: 1rem;">
+                <a href="/privacy" style="color: #fff; margin: 0 1rem;">Privacy Policy</a>
+                <a href="/terms" style="color: #fff; margin: 0 1rem;">Terms of Service</a>
+                <a href="/disclaimer" style="color: #fff; margin: 0 1rem;">Legal Disclaimer</a>
+                <a href="/faq" style="color: #fff; margin: 0 1rem;">FAQ</a>
+                <a href="/contact" style="color: #fff; margin: 0 1rem;">Contact</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const dropArea = document.getElementById('dropArea');
+        const fileInput = document.getElementById('fileInput');
+        const fileName = document.getElementById('fileName');
+        const processBtn = document.getElementById('processBtn');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const statusDiv = document.getElementById('status');
+        const resultDiv = document.getElementById('result');
+
+        // Drag and drop functionality
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+
+        function highlight() {
+            dropArea.classList.add('dragover');
+        }
+
+        function unhighlight() {
+            dropArea.classList.remove('dragover');
+        }
+
+        dropArea.addEventListener('drop', handleDrop, false);
+
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+
+        fileInput.addEventListener('change', function() {
+            handleFiles(this.files);
+        });
+
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                fileName.textContent = `Selected: ${file.name} (${(file.size / (1024 * 1024)).toFixed(2)} MB)`;
+                processBtn.disabled = false;
+            }
+        }
+
+        // Form submission
+        document.getElementById('uploadForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const fileInput = document.getElementById('fileInput');
+            if (!fileInput.files[0]) return;
+            
+            const formData = new FormData();
+            formData.append('file', fileInput.files[0]);
+            
+            // Reset UI
+            processBtn.disabled = true;
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '30%';
+            statusDiv.innerHTML = '<div class="status">Uploading file...</div>';
+            resultDiv.innerHTML = '';
+            
+            try {
+                // Upload and process
+                progressBar.style.width = '60%';
+                statusDiv.innerHTML = '<div class="status">Processing file...</div>';
+                
+                const response = await fetch('/process', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    progressBar.style.width = '100%';
+                    statusDiv.innerHTML = `<div class="status success">${result.message}</div>`;
+                    resultDiv.innerHTML = `
+                        <a href="${result.download_url}" class="download-link" download>
+                            📥 Download Processed File
+                        </a>
+                    `;
+                } else {
+                    statusDiv.innerHTML = `<div class="status error">Error: ${result.message}</div>`;
+                }
+                
+            } catch (error) {
+                statusDiv.innerHTML = `<div class="status error">Network error: ${error.message}</div>`;
+            } finally {
+                processBtn.disabled = false;
+                setTimeout(() => {
+                    progressContainer.style.display = 'none';
+                    progressBar.style.width = '0%';
+                }, 2000);
+            }
+        });
+    </script>
+</body>
+</html>
