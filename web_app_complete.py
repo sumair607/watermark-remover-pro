@@ -250,6 +250,11 @@ def not_found(error):
 #    print("⚡ Enhanced watermark removal algorithm")
 #    app.run(host='0.0.0.0', port=5000, debug=True)
 # Add this at the very end instead:
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
+# Remove the old app.run() and replace with:
+if __name__ == '__main__':
+    port = int(os.environ.get('PORT', 5000))
+    print("🚀 Watermark Remover Pro - Complete Version")
+    print(f"📧 Server starting on port: {port}")
+    print("📊 Features: Beautiful UI, FAQ, Contact, Disclaimer, Privacy Policy, Terms")
+    print("⚡ Enhanced watermark removal algorithm")
+    app.run(host='0.0.0.0', port=port, debug=False)
