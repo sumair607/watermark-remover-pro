@@ -1,7 +1,6 @@
 # web_app_complete.py
 import os
-import cv2
-import numpy as np
+from PIL import Image
 from flask import Flask, render_template, request, send_file, jsonify, session
 from werkzeug.utils import secure_filename
 from werkzeug.middleware.proxy_fix import ProxyFix
@@ -50,73 +49,30 @@ def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in allowed_extensions
 
 def remove_watermark(input_path, output_path):
-    """Enhanced watermark removal"""
+    """Simple watermark removal using PIL - works without OpenCV"""
     try:
+        from PIL import Image
+        import os
+        
         if input_path.lower().endswith(('.jpg', '.jpeg', '.png', '.bmp')):
-            # Image processing
-            img = cv2.imread(input_path)
-            if img is None:
-                return False, "Failed to read image"
+            # For images - simple processing as placeholder
+            img = Image.open(input_path)
             
-            # Remove red watermarks (common in videos)
-            hsv = cv2.cvtColor(img, cv2.COLOR_BGR2HSV)
+            # Convert to RGB if needed
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
             
-            # Define red color range
-            lower_red1 = np.array([0, 120, 70])
-            upper_red1 = np.array([10, 255, 255])
-            lower_red2 = np.array([170, 120, 70])
-            upper_red2 = np.array([180, 255, 255])
-            
-            mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
-            mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
-            mask = mask1 + mask2
-            
-            # Inpaint the masked areas
-            result = cv2.inpaint(img, mask, 3, cv2.INPAINT_TELEA)
-            cv2.imwrite(output_path, result)
-            return True, "Watermark removed successfully from image"
+            # Simple processing - you can enhance this later
+            # For now, just save the original as placeholder
+            img.save(output_path)
+            return True, "Image processed successfully (placeholder - basic version)"
             
         else:
-            # Video processing
-            cap = cv2.VideoCapture(input_path)
-            if not cap.isOpened():
-                return False, "Failed to open video"
-            
-            fps = int(cap.get(cv2.CAP_PROP_FPS))
-            width = int(cap.get(cv2.CAP_PROP_FRAME_WIDTH))
-            height = int(cap.get(cv2.CAP_PROP_FRAME_HEIGHT))
-            
-            fourcc = cv2.VideoWriter_fourcc(*'mp4v')
-            out = cv2.VideoWriter(output_path, fourcc, fps, (width, height))
-            
-            frame_count = 0
-            while True:
-                ret, frame = cap.read()
-                if not ret:
-                    break
-                
-                # Process each frame
-                hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
-                lower_red1 = np.array([0, 120, 70])
-                upper_red1 = np.array([10, 255, 255])
-                lower_red2 = np.array([170, 120, 70])
-                upper_red2 = np.array([180, 255, 255])
-                
-                mask1 = cv2.inRange(hsv, lower_red1, upper_red1)
-                mask2 = cv2.inRange(hsv, lower_red2, upper_red2)
-                mask = mask1 + mask2
-                
-                processed_frame = cv2.inpaint(frame, mask, 3, cv2.INPAINT_TELEA)
-                out.write(processed_frame)
-                frame_count += 1
-            
-            cap.release()
-            out.release()
-            return True, f"Video processed successfully - {frame_count} frames processed"
+            # For videos - we'll handle this later
+            return False, "Video processing requires OpenCV. Please use images for now."
             
     except Exception as e:
         return False, f"Processing error: {str(e)}"
-
 # Contact form functions
 def send_contact_email(name, email, message):
     """Send contact form email - currently prints to console"""
