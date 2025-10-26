@@ -1,7 +1,0 @@
-services:
-  - type: web
-    name: watermark-remover-pro
-    env: python
-    pythonVersion: "3.11.0"
-    buildCommand: pip install -r requirements.txt
-    startCommand: python web_app_complete.py
